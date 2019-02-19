@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+     app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: 740211342396.dkr.ecr.ap-southeast-2.amazonaws.com/kubernetes-challenge-frontend:latest #lrodrigo/aws-challenge:latest
+        env:
+        - name: mongo_service_host
+          value: backend			# Backend service name
+        - name: mongo_service_port
+          value: "27017"			# Default mongoDB port

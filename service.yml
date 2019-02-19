@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  ports:
+  - port: 80
+    targetPort: 4567			# Redirect port 80 to 4567
+  selector:
+    app: frontend
+  type: LoadBalancer
+  loadBalancerSourceRanges:		# Restrict IP 
+  - 124.19.3.26/24
